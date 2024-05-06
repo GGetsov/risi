@@ -22,3 +22,6 @@ def draw_frame(image: pygame.Surface, flip_x: bool):
 
 idle = load_sprite("idle")
 walking_frames = load_animation('walking_', 8)
+bread_frames = load_animation("bread_", 5)
+eye_frames = load_animation("eyes_", 3)
+lying_frames = load_animation("lying_", 5)

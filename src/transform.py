@@ -4,10 +4,10 @@ from pygame._sdl2 import Window as Sdl2Win
 
 class Size():
   def __init__(self) -> None:
-    self.x = 96
-    self.y = 96
-    # self.x = 64
-    # self.y = 64
+    # self.x = 96
+    # self.y = 96
+    self.x = 64
+    self.y = 64
 
 class Screen():
   def __init__(self, win_size: Size) -> None:

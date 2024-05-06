@@ -1,7 +1,7 @@
 import pygame
 import win32gui, win32con, win32api
 
-from src.states import Idle
+from src.states import Stand
 from src.transform import screen, win
 
 # remove background/add tranparency
@@ -13,9 +13,9 @@ win.move(win.pos.x, win.pos.y)
 #set on top
 win32gui.SetWindowPos(win.hwnd, win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE | win32con.SWP_NOSIZE)
 
-from src.states import Idle
+from src.states import Stand
 
-current_state = Idle(facing_left=False)
+current_state = Stand(facing=False)
 
 pygame.init()
 clock = pygame.time.Clock()
