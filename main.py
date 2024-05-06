@@ -4,6 +4,9 @@ import win32gui, win32con, win32api
 from src.states import Stand
 from src.transform import screen, win
 
+logo = pygame.image.load('./sprites/bread_5.png')
+pygame.display.set_icon(logo)
+
 # remove background/add tranparency
 background_color = (255,255,255)
 win32gui.SetWindowLong(win.hwnd, win32con.GWL_EXSTYLE, win32gui.GetWindowLong(win.hwnd, win32con.GWL_EXSTYLE) | win32con.WS_EX_LAYERED)
