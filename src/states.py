@@ -4,14 +4,17 @@ import win32gui, win32con, win32api
 import random
 from typing import TypeVar
 
-from src.transform import screen, win
+from src.transform import  win
 
-# remove titlebar and border
-screen = pygame.display.set_mode((win.size.x, win.size.y), pygame.NOFRAME)
-window = Window.from_display_module()
-
-# remove background/add tranparency
-hwnd = pygame.display.get_wm_info()["window"]
+walking_frames = []
+walking_frames.append(pygame.image.load('./sprites/walking_1.png'))
+walking_frames.append(pygame.image.load('./sprites/walking_2.png'))
+walking_frames.append(pygame.image.load('./sprites/walking_3.png'))
+walking_frames.append(pygame.image.load('./sprites/walking_4.png'))
+walking_frames.append(pygame.image.load('./sprites/walking_5.png'))
+walking_frames.append(pygame.image.load('./sprites/walking_6.png'))
+walking_frames.append(pygame.image.load('./sprites/walking_7.png'))
+walking_frames.append(pygame.image.load('./sprites/walking_8.png'))
 
 TState = TypeVar("TState", bound="State")
 

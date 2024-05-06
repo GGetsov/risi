@@ -28,6 +28,7 @@ from src.states import Idle
 current_state = Idle()
 
 pygame.init()
+clock = pygame.time.Clock()
 
 running = True
 while running:
@@ -44,3 +45,4 @@ while running:
   # screen.blit(image,(0,0))
 
   # pygame.display.flip()
+  clock.tick(60)
