@@ -5,28 +5,11 @@ import random
 from typing import TypeVar
 
 from src.transform import  screen, win
+from src.animation import draw_frame, idle, walking_frames
 
-background_color = (255,255,255)
-image_size_in_px = 32
-scaling_factor = win.size.x/image_size_in_px
-
-def load_sprite(name: str):
-  return pygame.transform.scale_by(pygame.image.load('./sprites/'+name+'.png'),scaling_factor)
-
-def load_animation(name:str, frames: int):
-  animation = []
-  for i in range(frames):
-    animation.append(load_sprite(name + str(i+1)))
-  return animation
-
-def draw_frame(image: pygame.Surface, flip_x: bool):
-  screen.real.fill(background_color)
-  screen.real.blit(pygame.transform.flip(image,flip_x,False),(0,0))
-  pygame.display.flip()
-
-idle = load_sprite("idle")
-
-walking_frames = load_animation('walking_', 8)
+#direction values
+left = True
+right = False
 
 TState = TypeVar("TState", bound="State")
 
@@ -51,21 +34,20 @@ class Walking(State):
   def __init__(self) -> None:
     self.destination = random.randint(0, win.pos.max_x)
     self.x = win.pos.x 
+    self.step = 4
+    # self.step = 3
     if (self.x > self.destination): 
-      self.facing_left = True
-      self.step = -4
-      # self.step = -3
+      self.direction = left
+      self.step *= -1
     else: 
-      self.facing_left = False
-      self.step = 4
-      # self.step = 3
+      self.direction = right
     self.current_frame = 0
     
   def on_update(self) -> None:
     self.x += self.step
     win.move(self.x, win.pos.max_y)
     image = walking_frames[self.current_frame]
-    draw_frame(image, self.facing_left)
+    draw_frame(image, self.direction)
     self.current_frame += 1
     if self.current_frame == len(walking_frames): self.current_frame = 0
     
@@ -77,4 +59,4 @@ class Walking(State):
   
   def get_next_state(self):
     win.pos.x = self.x
-    return Idle(facing_left=self.facing_left)
+    return Idle(facing_left=self.direction)
