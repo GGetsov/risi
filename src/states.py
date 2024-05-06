@@ -6,9 +6,6 @@ from typing import TypeVar
 
 from src.transform import screen, win
 
-background_color = (255,255,255)
-(x_scale,y_scale) = (win.size.x, win.size.y)
-
 # remove titlebar and border
 screen = pygame.display.set_mode((win.size.x, win.size.y), pygame.NOFRAME)
 window = Window.from_display_module()
@@ -28,9 +25,6 @@ class Idle(State):
   def __init__(self) -> None:
     self.starting_time = pygame.time.get_ticks()
 
-  def on_update(self) -> None:
-    return super().on_update()
-
   def should_change_state(self) -> bool:
     return (pygame.time.get_ticks() - self.starting_time >= 5000)
   
@@ -47,8 +41,7 @@ class Walking(State):
 
   def on_update(self) -> None:
     self.x += self.step
-    window.position = (self.x, win.pos.max_y)
-    win32gui.SetWindowPos(hwnd, win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE | win32con.SWP_NOSIZE)
+    win.move(self.x, win.pos.max_y)
 
   def should_change_state(self) -> bool:
     return self.x == self.destination 
