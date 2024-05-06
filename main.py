@@ -15,7 +15,7 @@ win32gui.SetWindowPos(win.hwnd, win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_
 
 from src.states import Idle
 
-current_state = Idle()
+current_state = Idle(facing_left=False)
 
 pygame.init()
 clock = pygame.time.Clock()

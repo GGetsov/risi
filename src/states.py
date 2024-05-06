@@ -19,9 +19,9 @@ def load_animation(name:str, frames: int):
     animation.append(load_sprite(name + str(i+1)))
   return animation
 
-def draw_frame(image: pygame.Surface):
+def draw_frame(image: pygame.Surface, flip_x: bool):
   screen.real.fill(background_color)
-  screen.real.blit(image,(0,0))
+  screen.real.blit(pygame.transform.flip(image,flip_x,False),(0,0))
   pygame.display.flip()
 
 idle = load_sprite("idle")
@@ -37,9 +37,9 @@ class State:
   def get_next_state(self) -> TState: ... 
 
 class Idle(State):
-  def __init__(self) -> None:
+  def __init__(self, facing_left: bool) -> None:
     self.starting_time = pygame.time.get_ticks()
-    draw_frame(idle)
+    draw_frame(idle, facing_left)
 
   def should_change_state(self) -> bool:
     return (pygame.time.get_ticks() - self.starting_time >= 500)
@@ -51,15 +51,21 @@ class Walking(State):
   def __init__(self) -> None:
     self.destination = random.randint(0, win.pos.max_x)
     self.x = win.pos.x 
-    if (self.x > self.destination): self.step = -3
-    else: self.step = 3
+    if (self.x > self.destination): 
+      self.facing_left = True
+      self.step = -4
+      # self.step = -3
+    else: 
+      self.facing_left = False
+      self.step = 4
+      # self.step = 3
     self.current_frame = 0
     
   def on_update(self) -> None:
     self.x += self.step
     win.move(self.x, win.pos.max_y)
     image = walking_frames[self.current_frame]
-    draw_frame(image)
+    draw_frame(image, self.facing_left)
     self.current_frame += 1
     if self.current_frame == len(walking_frames): self.current_frame = 0
     
@@ -71,4 +77,4 @@ class Walking(State):
   
   def get_next_state(self):
     win.pos.x = self.x
-    return Idle()
+    return Idle(facing_left=self.facing_left)

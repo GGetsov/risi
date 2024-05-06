@@ -6,6 +6,8 @@ class Size():
   def __init__(self) -> None:
     self.x = 96
     self.y = 96
+    # self.x = 64
+    # self.y = 64
 
 class Screen():
   def __init__(self, win_size: Size) -> None:
@@ -24,8 +26,6 @@ class Position():
     self.max_y = screen.height - win_size.y
     self.x = 0
     self.y = self.max_y
-    # 1 means facing right, -1 - left
-    self.x_direction = 1
 
 
 class Window():
