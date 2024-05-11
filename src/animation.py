@@ -14,7 +14,8 @@ def load_sprite(name: str):
 def load_animation(name:str, frames: int):
   animation = []
   for i in range(frames):
-    animation.append(load_sprite(name + str(i+1)))
+    # sprites that are are a part of an animation are named "action_#"
+    animation.append(load_sprite(name + "_" + str(i+1)))
   return animation
 
 def draw_frame(image: pygame.Surface, flip_x: bool):
@@ -23,7 +24,7 @@ def draw_frame(image: pygame.Surface, flip_x: bool):
   pygame.display.flip()
 
 idle = load_sprite("idle")
-walking_frames = load_animation('walking_', 8)
-bread_frames = load_animation("bread_", 5)
-eye_frames = load_animation("eyes_", 3)
-lying_frames = load_animation("lying_", 5)
+walking_frames = load_animation('walking', 8)
+bread_frames = load_animation("bread", 5)
+eye_frames = load_animation("eyes", 3)
+lying_frames = load_animation("lying", 5)
