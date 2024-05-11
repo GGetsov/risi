@@ -12,11 +12,7 @@ background_color = (255,255,255)
 win32gui.SetWindowLong(win.hwnd, win32con.GWL_EXSTYLE, win32gui.GetWindowLong(win.hwnd, win32con.GWL_EXSTYLE) | win32con.WS_EX_LAYERED)
 win32gui.SetLayeredWindowAttributes(win.hwnd, win32api.RGB(*background_color), 0, win32con.LWA_COLORKEY)
 
-win.move(win.pos.x, win.pos.y)
-#set on top
-win32gui.SetWindowPos(win.hwnd, win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE | win32con.SWP_NOSIZE)
-
-from src.states import Stand
+# win.move(win.pos.x, win.pos.y)
 
 current_state = Stand(facing=False)
 
@@ -34,5 +30,4 @@ while running:
 
   current_state.on_update()
 
-  # pygame.display.flip()
   clock.tick(30)

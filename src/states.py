@@ -47,7 +47,11 @@ class IdleState(State):
     self.facing = facing
     self.starting_time = pygame.time.get_ticks()
     self.vars = self.create_vars()
-    draw_frame(self.vars.frame, facing)
+    draw_frame(self.vars.frame, self.facing)
+
+  def on_update(self) -> None:
+    win.stand()
+    draw_frame(self.vars.frame, self.facing)
 
   def create_vars(self) -> IdleVars:...
   def should_change_state(self) -> bool:
@@ -67,6 +71,7 @@ class TransitionState(State):
     return TransitionVars(frames=[], state_list=[])
 
   def on_update(self) -> None:
+    win.stand()
     draw_frame(self.vars.frames[self.current_frame], self.facing)
     self.current_frame += self.vars.step
 
