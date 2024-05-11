@@ -3,8 +3,9 @@ import win32gui, win32con, win32api
 
 from src.states import Stand
 from src.transform import screen, win
+from src.path import resource_path
 
-logo = pygame.image.load('./sprites/bread_5.png')
+logo = pygame.image.load(resource_path('sprites\\bread_5.png'))
 pygame.display.set_icon(logo)
 
 # remove background/add tranparency

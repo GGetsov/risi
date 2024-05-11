@@ -1,13 +1,15 @@
 import pygame
 
 from src.transform import win, screen
+from src.path import resource_path 
 
 background_color = (255,255,255)
 image_size_in_px = 32
 scaling_factor = win.size.x/image_size_in_px
+path_start = resource_path("sprites\\")
 
 def load_sprite(name: str):
-  return pygame.transform.scale_by(pygame.image.load('./sprites/'+name+'.png'),scaling_factor)
+  return pygame.transform.scale_by(pygame.image.load(path_start+name+'.png'),scaling_factor)
 
 def load_animation(name:str, frames: int):
   animation = []
