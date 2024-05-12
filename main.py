@@ -1,12 +1,13 @@
 import pygame
 import win32gui, win32con, win32api
+import os
+import subprocess
 
 from src.states import Stand
 from src.transform import screen, win
 from src.path import resource_path
-
-logo = pygame.image.load(resource_path('sprites\\bread_5.png'))
-pygame.display.set_icon(logo)
+from src.version import is_uptodate
+from src.update import get_latest_version_num
 
 # remove background/add tranparency
 background_color = (255,255,255)
@@ -19,6 +20,15 @@ current_state = Stand(facing=False)
 
 pygame.init()
 clock = pygame.time.Clock()
+
+#check for and handle update
+pid = str(os.getpid())
+latest = get_latest_version_num()
+if is_uptodate(latest):
+  subprocess.Popen([resource_path("dist\\updater.exe"), latest, pid])
+
+logo = pygame.image.load(resource_path('sprites\\bread_5.png'))
+pygame.display.set_icon(logo)
 
 running = True
 while running:
