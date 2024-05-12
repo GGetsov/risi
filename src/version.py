@@ -1,4 +1,4 @@
-curr_version = "0.0.0"
+curr_version = "0.2.0"
 
 def is_uptodate(latest_version: str) -> bool:
   #convert str into list of numbers 
