@@ -4,15 +4,9 @@ import os
 import subprocess
 
 from src.states import Stand
-from src.transform import screen, win
 from src.path import resource_path
 from src.version import is_uptodate
 from src.update import get_latest_version_num
-
-# remove background/add tranparency
-background_color = (255,255,255)
-win32gui.SetWindowLong(win.hwnd, win32con.GWL_EXSTYLE, win32gui.GetWindowLong(win.hwnd, win32con.GWL_EXSTYLE) | win32con.WS_EX_LAYERED)
-win32gui.SetLayeredWindowAttributes(win.hwnd, win32api.RGB(*background_color), 0, win32con.LWA_COLORKEY)
 
 # win.move(win.pos.x, win.pos.y)
 

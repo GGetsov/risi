@@ -39,6 +39,12 @@ class Window():
     self.place_on_top()
     self.on_top = True
     self.move(self.pos.x, self.pos.y)
+    # remove background/add tranparency
+    background_color = (255,255,255)
+    win32gui.SetWindowLong(self.hwnd, win32con.GWL_EXSTYLE, win32gui.GetWindowLong(self.hwnd, win32con.GWL_EXSTYLE) | win32con.WS_EX_LAYERED)
+    win32gui.SetLayeredWindowAttributes(self.hwnd, win32api.RGB(*background_color), 0, win32con.LWA_COLORKEY)
+    screen.real.fill(background_color)
+    pygame.display.flip()
   
   def place_on_top(self):
     win32gui.SetWindowPos(self.hwnd, win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE | win32con.SWP_NOSIZE)
