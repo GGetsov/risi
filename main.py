@@ -1,5 +1,4 @@
 import pygame
-import win32gui, win32con, win32api
 import os
 import subprocess
 
@@ -7,8 +6,6 @@ from src.states import Stand
 from src.path import resource_path
 from src.version import is_uptodate
 from src.update import get_latest_version_num
-
-# win.move(win.pos.x, win.pos.y)
 
 current_state = Stand(facing=False)
 
