@@ -1,8 +1,8 @@
-curr_version = "0.2.0"
+current_version = "0.2.2"
 
 def is_uptodate(latest_version: str) -> bool:
   #convert str into list of numbers 
-  curr_nums = [eval(i) for i in curr_version.split('.')]
+  curr_nums = [eval(i) for i in current_version.split('.')]
   latest_nums = [eval(i) for i in latest_version.split('.')]
 
   for (cur_n, latest_n) in zip(curr_nums, latest_nums):

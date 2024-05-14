@@ -2,6 +2,7 @@ Scripts/
 Include/
 Lib/
 риси/
+update_ver.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
